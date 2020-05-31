@@ -1,0 +1,9 @@
+com\housseine\springsecurityjwt\utils\JwtUtils.class
+com\housseine\springsecurityjwt\filters\JwtRequestFilter.class
+com\housseine\springsecurityjwt\SpringSecurityJwtApplication.class
+com\housseine\springsecurityjwt\controller\AuthenticationController.class
+com\housseine\springsecurityjwt\services\MyUserDetailsService.class
+com\housseine\springsecurityjwt\controller\HlloRessource.class
+com\housseine\springsecurityjwt\config\SecurityConfig.class
+com\housseine\springsecurityjwt\models\AuthenticationRequest.class
+com\housseine\springsecurityjwt\models\AuthenticationResponse.class

@@ -12,42 +12,43 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.housseine.springsecurityjwt.models.AuthenticationRequest;
 import com.housseine.springsecurityjwt.models.AuthenticationResponse;
 import com.housseine.springsecurityjwt.services.MyUserDetailsService;
 import com.housseine.springsecurityjwt.utils.JwtUtils;
 
-@Controller
+@RestController
 public class AuthenticationController {
 	
-	@Autowired
-	private AuthenticationManager authenticationManager;
+//	@Autowired
+//	private AuthenticationManager authenticationManager;
 	@Autowired
 	private MyUserDetailsService myUserDetailsService;
 	@Autowired
 	private JwtUtils jwtUtils;
 	
 	
-	@GetMapping("/authenticate")
-	public String greetingForm(Model model) {
-		model.addAttribute("authenticationRequest",new AuthenticationRequest());	
-
-		return "authentication";
-	}
+//	@GetMapping("/authenticate")
+//	public String greetingForm(Model model) {
+//		model.addAttribute("authenticationRequest",new AuthenticationRequest());	
+//
+//		return "authentication";
+//	}
 	
-	@PostMapping(value = "/authenticate")
+	@GetMapping(value = "/authenticate")
 	public ResponseEntity<AuthenticationResponse> createAuthenticationToken(
-			@ModelAttribute AuthenticationRequest authenticationRequest) throws Exception {
+			) throws Exception {
 
-		try {
-			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-					authenticationRequest.getUsername(), authenticationRequest.getPassword()));
-		} catch (BadCredentialsException e) {
-			throw new Exception("Incorrect username or password", e);
-		}
+//		try {
+//			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+//					authenticationRequest.getUsername(), authenticationRequest.getPassword()));
+//		} catch (BadCredentialsException e) {
+//			throw new Exception("Incorrect username or password", e);
+//		}
 
-		final UserDetails userDetails = myUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+		final UserDetails userDetails = myUserDetailsService.loadUserByUsername("foo");
 		final String jwt = jwtUtils.generateToken(userDetails);
 		return ResponseEntity.ok(new AuthenticationResponse(jwt));
 	}
